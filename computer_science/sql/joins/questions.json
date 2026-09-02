@@ -1,0 +1,21 @@
+[
+  {
+    "id": "joins-1",
+    "type": "multiple_choice",
+    "prompt": "Which clause states how rows from two joined tables are related?",
+    "choices": [
+      "ON",
+      "ORDER BY",
+      "LIMIT"
+    ],
+    "answer": "ON",
+    "feedback": "The ON clause contains the join condition used to match rows."
+  },
+  {
+    "id": "joins-2",
+    "type": "true_false",
+    "prompt": "An inner join returns unmatched rows from both tables.",
+    "answer": false,
+    "feedback": "An inner join returns only rows that satisfy the join condition."
+  }
+]

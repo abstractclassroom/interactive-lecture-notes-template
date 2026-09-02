@@ -1,0 +1,12 @@
+{
+  "title": "Combining Rows with SQL Joins",
+  "objectives": [
+    "Relate rows across two tables with an inner join",
+    "Select a join condition from primary and foreign keys",
+    "Explain why an inner join excludes unmatched rows"
+  ],
+  "prerequisites": [
+    "Basic SELECT statements",
+    "Primary and foreign keys"
+  ]
+}
