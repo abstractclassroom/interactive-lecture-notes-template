@@ -21,3 +21,9 @@ Each lesson directory contains:
 - `questions.json` for interactive follow-up questions
 
 The two included lessons are safe samples. Replace, rename, or reorganize them to fit your curriculum.
+
+## AbstractClassroom connection
+
+The included GitHub workflow securely identifies this repository to AbstractClassroom when the repository is created and whenever content is pushed to main. It uses a short-lived GitHub identity token and contains no stored AbstractClassroom secret.
+
+If the repository name and owner do not match a registered course, AbstractClassroom ignores the workflow request and makes no changes.
