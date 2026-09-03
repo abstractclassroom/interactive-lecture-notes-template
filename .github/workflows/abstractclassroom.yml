@@ -23,20 +23,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          oidc_response="$(curl --silent --show-error --fail-with-body \\
-            --header "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \\
+          oidc_response="$(curl --silent --show-error --fail-with-body \
+            --header "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
             "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${ABSTRACTCLASSROOM_AUDIENCE}")"
           oidc_token="$(jq -er '.value' <<< "${oidc_response}")"
           response_file="${RUNNER_TEMP}/abstractclassroom-workflow-response.json"
-          curl --silent --show-error --fail-with-body \\
-            --request POST \\
-            --header "Authorization: Bearer ${oidc_token}" \\
-            --header "Accept: application/json" \\
-            --output "${response_file}" \\
+          curl --silent --show-error --fail-with-body \
+            --request POST \
+            --header "Authorization: Bearer ${oidc_token}" \
+            --header "Accept: application/json" \
+            --output "${response_file}" \
             "${ABSTRACTCLASSROOM_ENDPOINT}"
           if [[ "$(jq -r '.recognized // false' "${response_file}")" == "true" ]]; then
             echo "AbstractClassroom connected this repository to the registered course."
           else
             echo "This repository is not registered with AbstractClassroom. No action was taken."
           fi
-
