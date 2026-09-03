@@ -16,11 +16,61 @@ https://interactive.abstractclassroom.com/<course_registration_id>/mathematics/s
 
 Each lesson directory contains:
 
-- `lecture.md` for the lesson content
-- `metadata.json` for the title, objectives, and prerequisites
-- `questions.json` for interactive follow-up questions
+- `config.json` for the title, subtitle, publication status, description,
+  objectives, prerequisites, and ordered presentation files
+- Markdown files for instructor-authored lesson blocks
+- One `*.question.json` file for each interactive check
 
-The two included lessons are safe samples. Replace, rename, or reorganize them to fit your curriculum.
+The `order` array in `config.json` is the complete student presentation order.
+Markdown is rendered with GitHub-style tables, links, images, fenced code, and
+LaTeX expressions. Question prompts, responses, and feedback also accept
+Markdown.
+
+## Lesson configuration
+
+Use this shape for `config.json`:
+
+```json
+{
+  "schemaVersion": 1,
+  "title": "Lesson title",
+  "subtitle": "A short student-facing subtitle",
+  "published": true,
+  "description": "What this lesson covers",
+  "order": [
+    "01-concept.md",
+    "concept-check.question.json",
+    "02-example.md"
+  ],
+  "prerequisites": ["Knowledge students should already have"],
+  "objectives": ["An observable outcome for this lesson"]
+}
+```
+
+Setting `published` to `false` keeps the directory unavailable to students.
+Every filename in `order` must be in the same lesson directory.
+
+Use this shape for a question file:
+
+```json
+{
+  "schemaVersion": 1,
+  "id": "stable-question-id",
+  "type": "single_choice",
+  "prompt": "Which statement is **true**?",
+  "responses": [
+    { "id": "a", "markdown": "First response" },
+    { "id": "b", "markdown": "Second response" }
+  ],
+  "correctResponse": "a",
+  "feedback": {
+    "correct": "Correct feedback",
+    "incorrect": "A concise hint"
+  }
+}
+```
+
+The included lessons are safe samples. Replace, rename, or reorganize them to fit your curriculum.
 
 ## AbstractClassroom connection
 

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "title": "Cardinality",
+  "subtitle": "Finite, countably infinite, and uncountable sets",
+  "published": true,
+  "description": "Measure the size of sets and compare different kinds of infinity.",
+  "order": [
+    "01-finite-and-infinite.md",
+    "finite.question.json",
+    "02-countable-and-uncountable.md",
+    "countability.question.json"
+  ],
+  "prerequisites": [
+    "Set notation",
+    "Functions and one-to-one correspondence"
+  ],
+  "objectives": [
+    "Write cardinality using standard notation",
+    "Distinguish finite sets from infinite sets",
+    "Explain countability through correspondence with the natural numbers",
+    "Recognize representative countable and uncountable sets"
+  ]
+}

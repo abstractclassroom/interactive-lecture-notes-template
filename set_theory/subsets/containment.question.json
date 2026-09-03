@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "subsets-containment",
+  "type": "single_choice",
+  "prompt": "Let $A = \\{2,4\\}$ and $B = \\{2,4,6\\}$. Which statement is true?",
+  "responses": [
+    { "id": "a", "markdown": "$A \\subseteq B$" },
+    { "id": "b", "markdown": "$B \\subseteq A$" },
+    { "id": "c", "markdown": "$A \\nsubseteq A$" }
+  ],
+  "correctResponse": "a",
+  "feedback": {
+    "correct": "Correct. Every element of $A$ appears in $B$.",
+    "incorrect": "Test containment by checking every element of the set on the left."
+  }
+}

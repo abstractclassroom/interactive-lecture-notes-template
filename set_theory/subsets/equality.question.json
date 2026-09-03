@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "subsets-equality",
+  "type": "single_choice",
+  "prompt": "Suppose $A \\subseteq B$ and $B \\subseteq A$. What must be true?",
+  "responses": [
+    { "id": "a", "markdown": "$A \\subsetneq B$" },
+    { "id": "b", "markdown": "$A = B$" },
+    { "id": "c", "markdown": "$A \\nsubseteq B$" }
+  ],
+  "correctResponse": "b",
+  "feedback": {
+    "correct": "Correct. Bidirectional containment shows that the two sets have exactly the same elements.",
+    "incorrect": "If containment holds in both directions, neither set can contain an element missing from the other."
+  }
+}

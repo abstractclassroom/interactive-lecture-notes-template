@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "cardinality-finite",
+  "type": "single_choice",
+  "prompt": "What is the cardinality of $A = \\{1,1,2,3,3\\}$?",
+  "responses": [
+    { "id": "a", "markdown": "$|A| = 3$" },
+    { "id": "b", "markdown": "$|A| = 5$" },
+    { "id": "c", "markdown": "$|A| = \\aleph_0$" }
+  ],
+  "correctResponse": "a",
+  "feedback": {
+    "correct": "Correct. Repeated entries do not create additional elements, so $A = \\{1,2,3\\}$.",
+    "incorrect": "Cardinality counts distinct elements rather than the number of entries written."
+  }
+}

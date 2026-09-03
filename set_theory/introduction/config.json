@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "title": "Introduction to Sets",
+  "subtitle": "Representing sets, membership, and nested sets",
+  "published": true,
+  "description": "Learn how sets are written, what makes them distinct from lists, and how sets can contain other sets.",
+  "order": [
+    "01-representing-sets.md",
+    "representation.question.json",
+    "02-properties-and-membership.md",
+    "membership.question.json"
+  ],
+  "prerequisites": [
+    "Basic algebraic notation"
+  ],
+  "objectives": [
+    "Represent a set with a sentence, roster notation, and set-builder notation",
+    "Explain why order and repeated elements do not change a set",
+    "Use membership notation correctly",
+    "Distinguish an element from a nested set"
+  ]
+}

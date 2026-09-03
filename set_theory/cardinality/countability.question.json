@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "cardinality-countability",
+  "type": "single_choice",
+  "prompt": "Which set is **uncountable**?",
+  "responses": [
+    { "id": "a", "markdown": "$\\mathbb{N}$" },
+    { "id": "b", "markdown": "$\\mathbb{Z}$" },
+    { "id": "c", "markdown": "$\\mathbb{R}$" }
+  ],
+  "correctResponse": "c",
+  "feedback": {
+    "correct": "Correct. The real numbers cannot be placed in a one-to-one correspondence with the natural numbers.",
+    "incorrect": "Both $\\mathbb{N}$ and $\\mathbb{Z}$ are countably infinite."
+  }
+}
