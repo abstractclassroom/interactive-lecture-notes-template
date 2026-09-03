@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "set-introduction-representation",
+  "type": "single_choice",
+  "prompt": "Which expression uses **set-builder notation** for the odd positive integers less than $8$?",
+  "responses": [
+    { "id": "a", "markdown": "$\\{1, 3, 5, 7\\}$" },
+    { "id": "b", "markdown": "$\\{x \\in \\mathbb{Z}^{+} \\mid x < 8 \\text{ and } x \\text{ is odd}\\}$" },
+    { "id": "c", "markdown": "The odd positive integers less than $8$" }
+  ],
+  "correctResponse": "b",
+  "feedback": {
+    "correct": "Correct. Set-builder notation identifies a domain and the condition its elements satisfy.",
+    "incorrect": "Look for the representation that describes elements with a variable, a domain, and a condition."
+  }
+}

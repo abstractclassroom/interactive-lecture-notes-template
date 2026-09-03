@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "title": "Subsets",
+  "subtitle": "Containment, equality, and proper subsets",
+  "published": true,
+  "description": "Compare sets by determining whether every element of one set is contained in another.",
+  "order": [
+    "01-subset-containment.md",
+    "containment.question.json",
+    "02-equality-and-proper-subsets.md",
+    "equality.question.json"
+  ],
+  "prerequisites": [
+    "Set notation",
+    "Membership notation"
+  ],
+  "objectives": [
+    "Determine whether one set is a subset of another",
+    "Use not-a-subset notation when containment fails",
+    "Explain why every set is a subset of itself",
+    "Prove set equality using bidirectional containment",
+    "Distinguish subsets from proper subsets"
+  ]
+}

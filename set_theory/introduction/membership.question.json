@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "set-introduction-membership",
+  "type": "single_choice",
+  "prompt": "Let $A = \\{1, \\{2,3\\}, 4\\}$. Which statement is true?",
+  "responses": [
+    { "id": "a", "markdown": "$2 \\in A$" },
+    { "id": "b", "markdown": "$\\{2,3\\} \\in A$" },
+    { "id": "c", "markdown": "$3 \\in A$" }
+  ],
+  "correctResponse": "b",
+  "feedback": {
+    "correct": "Correct. The set $\\{2,3\\}$ is itself one element of $A$.",
+    "incorrect": "Check which objects appear directly between the outer braces of $A$."
+  }
+}
