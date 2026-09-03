@@ -72,6 +72,17 @@ Use this shape for a question file:
 
 The included lessons are safe samples. Replace, rename, or reorganize them to fit your curriculum.
 
+## Completion receipts
+
+After the final block, a student can download a signed JWT completion receipt to
+submit through your LMS. The receipt identifies the course, lesson path, exact
+lesson-content digest, completion time, signing-key version, and a unique receipt
+ID. It does not contain the student's name, username, or email address. Your
+educator dashboard can validate submitted receipts for courses you own.
+
+The receipt confirms that the interactive flow reached completion in the
+student's browser. It is not a proctored identity or assessment credential.
+
 ## AbstractClassroom connection
 
 The included GitHub workflow securely identifies this repository to AbstractClassroom when the repository is created and whenever content is pushed to main. It uses a short-lived GitHub identity token and contains no stored AbstractClassroom secret.
