@@ -87,4 +87,4 @@ student's browser. It is not a proctored identity or assessment credential.
 
 The included GitHub workflow securely identifies this repository to AbstractClassroom when the repository is created and whenever content is pushed to main. It uses a short-lived GitHub identity token and contains no stored AbstractClassroom secret.
 
-If the repository name and owner do not match a registered course, AbstractClassroom ignores the workflow request and makes no changes.
+Connect the repository to the course through the AbstractClassroom dashboard first. After connection, AbstractClassroom identifies it only by GitHub's immutable numeric repository ID. A later workflow supplies its current name and owner for display, so a rename does not break the course connection. An unknown repository ID is ignored and cannot change a course.
