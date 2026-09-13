@@ -86,7 +86,7 @@ independently establish student identity or prove completion of the browser flow
 ## AbstractClassroom connection and publishing
 
 Register your course in AbstractClassroom, then choose **Link repository** and
-**Generate pairing token**. The token is valid for one hour. In this repository:
+open repository setup. The dashboard provides a token valid for two hours. In this repository:
 
 1. Open **Settings → Secrets and variables → Actions → New repository secret**.
 2. Name the secret `ABSTRACTCLASSROOM_PAIRING_TOKEN` and paste the generated value.
@@ -134,3 +134,11 @@ When adopting this publishing workflow in an existing course repository, copy
 both `.github/workflows/abstractclassroom.yml` and
 `.github/scripts/sync-content.py`, commit them to `main`, and run the workflow.
 Copying or updating the template does not update existing course repositories.
+
+To replace the linked repository, choose **Change repo** in the course dashboard.
+Type **CHANGE REPOSITORY** and check **I understand**. The current repository is
+disconnected immediately and no lessons are served until the replacement is
+linked and published. Add the new token to the replacement repository using the
+same secret name above. **Repository unlinked** reopens the instructions; after
+two hours it generates a fresh token. Reloading the dashboard also requires a
+fresh token because tokens are kept only in page memory.
