@@ -30,3 +30,12 @@ stable question IDs within each lesson.
 - Every question has a unique ID, Markdown prompt, response list, correct response, and feedback
 - Mathematical notation is balanced and readable
 - Links use stable relative paths when they refer to repository content
+
+## Publishing
+
+The workflow and `.github/scripts/sync-content.py` publish complete, validated
+lesson snapshots to AbstractClassroom's private S3 content bucket. Keep both
+files when updating the template. Student delivery reads the active S3 snapshot;
+changes become visible after the publishing workflow succeeds. GitHub OIDC and
+the established immutable repository ID authorize only this course's staging
+upload. Never add permanent AWS credentials or loosen the course binding.
