@@ -31,4 +31,6 @@ jobs:
           persist-credentials: false
 
       - name: Authenticate with OIDC and publish course content
+        env:
+          ABSTRACTCLASSROOM_PAIRING_TOKEN: ${{ secrets.ABSTRACTCLASSROOM_PAIRING_TOKEN }}
         run: python3 .github/scripts/sync-content.py

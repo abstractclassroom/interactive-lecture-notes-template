@@ -105,6 +105,23 @@ def call_api(body: dict) -> dict:
     ))
 
 
+def authorize_upload(manifest: bytes) -> dict:
+    # Available only to this initial API call, never to AWS subprocesses or files.
+    pairing_token = os.environ.pop("ABSTRACTCLASSROOM_PAIRING_TOKEN", "").strip()
+    body = {"action": "sync", "manifestDigest": hashlib.sha256(manifest).hexdigest()}
+    if pairing_token:
+        body["pairingToken"] = pairing_token
+    try:
+        response = call_api(body)
+    except urllib.error.HTTPError as error:
+        if error.code == 403:
+            raise ValueError("Repository pairing was rejected. Generate a new token in the course dashboard, update ABSTRACTCLASSROOM_PAIRING_TOKEN in repository Actions secrets, and rerun this workflow.") from None
+        raise
+    if not response.get("recognized"):
+        raise ValueError("Initial setup: generate a pairing token in your AbstractClassroom course dashboard, add it as the repository Actions secret ABSTRACTCLASSROOM_PAIRING_TOKEN, and rerun Publish to AbstractClassroom. Already linked repositories do not need this secret.")
+    return response
+
+
 def main() -> None:
     root = Path(os.environ.get("GITHUB_WORKSPACE", ".")).resolve()
     if subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip() != os.environ["GITHUB_SHA"]:
@@ -116,9 +133,7 @@ def main() -> None:
         manifest = collect_content(root, content)
         manifest_path = work / "manifest.json"
         manifest_path.write_bytes(manifest)
-        response = call_api({"action": "sync", "manifestDigest": hashlib.sha256(manifest).hexdigest()})
-        if not response.get("recognized"):
-            raise ValueError("Link this repository to your course through the AbstractClassroom dashboard, then rerun this workflow.")
+        response = authorize_upload(manifest)
         uploads = response.get("uploads", [])
         if not uploads:
             raise ValueError("The server did not authorize a course upload.")
