@@ -39,3 +39,9 @@ files when updating the template. Student delivery reads the active S3 snapshot;
 changes become visible after the publishing workflow succeeds. GitHub OIDC and
 the established immutable repository ID authorize only this course's staging
 upload. Never add permanent AWS credentials or loosen the course binding.
+
+Initial pairing requires the course-scoped `ABSTRACTCLASSROOM_PAIRING_TOKEN` in
+repository Actions secrets. It expires after one hour and is consumed once the
+publishing workflow binds the immutable repository ID. Future runs do not need
+it. Never commit, print, or copy the token into lesson files. Repository names
+are suggestions and provide no pairing authority.

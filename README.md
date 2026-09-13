@@ -85,10 +85,24 @@ independently establish student identity or prove completion of the browser flow
 
 ## AbstractClassroom connection and publishing
 
-Connect this repository to the course through the AbstractClassroom dashboard
-first. AbstractClassroom binds it to GitHub's immutable numeric repository ID.
-Unknown repository IDs cannot obtain upload access or change a course. A rename
-keeps the same identity; a replacement repository must be linked deliberately.
+Register your course in AbstractClassroom, then choose **Link repository** and
+**Generate pairing token**. The token is valid for one hour. In this repository:
+
+1. Open **Settings → Secrets and variables → Actions → New repository secret**.
+2. Name the secret `ABSTRACTCLASSROOM_PAIRING_TOKEN` and paste the generated value.
+3. Open **Actions → Publish to AbstractClassroom → Run workflow** on `main`.
+
+This same workflow pairs the repository and publishes its lesson files. A run
+before adding the secret cannot connect; add the secret and rerun it. You may
+choose any repository name, including at creation. No GitHub App installation is
+required, and personal or organization repositories use the same process.
+
+The first authenticated run binds your course to GitHub's immutable numeric
+repository ID and consumes the token. You can then delete the secret: future
+publishing uses OIDC and the stored repository ID. An expired secret left behind
+also does not block publishing. Renames and transfers retain the association;
+a fork, copy, or newly created replacement has a different identity. Generating a
+replacement token before connection invalidates the previous token.
 
 Every push to `main`, or a manual run of **Publish to AbstractClassroom**, checks
 out the exact workflow commit and runs `.github/scripts/sync-content.py`:
@@ -102,8 +116,9 @@ out the exact workflow commit and runs `.github/scripts/sync-content.py`:
 
 Students read the published S3 snapshot. AbstractClassroom does not fetch lesson
 files from GitHub while serving students. GitHub remains your authoring source,
-and public and private repositories use the same publishing flow. No permanent
-AWS or AbstractClassroom credentials are stored in this repository.
+and public and private repositories use the same publishing flow. The one-time
+pairing token belongs only in GitHub Actions secrets. No permanent AWS credentials
+are needed, and no credentials belong in repository files.
 
 A failed sync leaves the previous publication active. A successful sync replaces
 the course's complete snapshot: files removed from the lesson configuration or
