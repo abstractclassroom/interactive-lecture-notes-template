@@ -80,11 +80,42 @@ lesson-content digest, completion time, signing-key version, and a unique receip
 ID. It does not contain the student's name, username, or email address. Your
 educator dashboard can validate submitted receipts for courses you own.
 
-The receipt confirms that the interactive flow reached completion in the
-student's browser. It is not a proctored identity or assessment credential.
+The receipt authenticates AbstractClassroom-issued lesson claims. It does not
+independently establish student identity or prove completion of the browser flow.
 
-## AbstractClassroom connection
+## AbstractClassroom connection and publishing
 
-The included GitHub workflow securely identifies this repository to AbstractClassroom when the repository is created and whenever content is pushed to main. It uses a short-lived GitHub identity token and contains no stored AbstractClassroom secret.
+Connect this repository to the course through the AbstractClassroom dashboard
+first. AbstractClassroom binds it to GitHub's immutable numeric repository ID.
+Unknown repository IDs cannot obtain upload access or change a course. A rename
+keeps the same identity; a replacement repository must be linked deliberately.
 
-Connect the repository to the course through the AbstractClassroom dashboard first. After connection, AbstractClassroom identifies it only by GitHub's immutable numeric repository ID. A later workflow supplies its current name and owner for display, so a rename does not break the course connection. An unknown repository ID is ignored and cannot change a course.
+Every push to `main`, or a manual run of **Publish to AbstractClassroom**, checks
+out the exact workflow commit and runs `.github/scripts/sync-content.py`:
+
+1. Collect tracked lesson `config.json` files, their ordered Markdown and question
+   JSON files, and supported images inside those lesson directories.
+2. Authenticate with GitHub OIDC and obtain 15-minute AWS credentials restricted
+   to this course's staging prefix in a private shared S3 bucket.
+3. Sync files to staging and upload their checksummed manifest last.
+4. Wait while AbstractClassroom validates the complete snapshot and publishes it.
+
+Students read the published S3 snapshot. AbstractClassroom does not fetch lesson
+files from GitHub while serving students. GitHub remains your authoring source,
+and public and private repositories use the same publishing flow. No permanent
+AWS or AbstractClassroom credentials are stored in this repository.
+
+A failed sync leaves the previous publication active. A successful sync replaces
+the course's complete snapshot: files removed from the lesson configuration or
+repository are absent from the new publication. Older workflow runs cannot
+replace a newer publication. Lessons with `published: false` remain unavailable.
+
+Uploads support up to 1000 files and 100 MB per publication. Individual limits
+are 64 KB for JSON, 256 KB for Markdown, and 5 MB for AVIF, GIF, JPEG, PNG, or WebP
+images. Symlinks, untracked files, unrelated JSON, and files outside lesson
+directories are excluded or rejected. Do not place credentials in lesson files.
+
+When adopting this publishing workflow in an existing course repository, copy
+both `.github/workflows/abstractclassroom.yml` and
+`.github/scripts/sync-content.py`, commit them to `main`, and run the workflow.
+Copying or updating the template does not update existing course repositories.
