@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "cardinality-finite-count",
+  "type": "fill_in_blank",
+  "prompt": "Enter the cardinality of $A = \\{2,4,6\\}$.",
+  "answer": {
+    "mode": "integer",
+    "value": 3
+  },
+  "feedback": {
+    "correct": "Correct. The set contains three distinct elements, so $|A|=3$.",
+    "incorrect": "Count the distinct elements and enter a whole number."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "cardinality-finite-kind",
+  "type": "fill_in_blank",
+  "prompt": "Complete the sentence with a lowercase word: a set with exactly three elements is **_____**.",
+  "answer": {
+    "mode": "string",
+    "value": "finite"
+  },
+  "feedback": {
+    "correct": "Correct. A set with a fixed nonnegative integer number of elements is finite.",
+    "incorrect": "Is the set finite or infinite? Enter the lowercase word."
+  }
+}

@@ -72,6 +72,58 @@ Use this shape for a question file:
 
 The included lessons are safe samples. Replace, rename, or reorganize them to fit your curriculum.
 
+## Fill-in-the-blank questions
+
+Use `type: "fill_in_blank"` in a normal `*.question.json` file and list it in
+`config.json`'s `order`, just like a multiple-choice question. Schema version
+remains 1. No Markdown syntax, publishing workflow, or MDX changes are needed.
+
+```json
+{
+  "schemaVersion": 1,
+  "id": "generator-count-c48",
+  "type": "fill_in_blank",
+  "prompt": "How many generators does $C_{48}$ have?",
+  "answer": { "mode": "integer", "value": 16 },
+  "feedback": {
+    "correct": "Correct! $\\varphi(48)=16$.",
+    "incorrect": "Try again. Use Euler's totient function."
+  }
+}
+```
+
+Choose exactly one of these answer shapes:
+
+| Mode | Required answer object | Matching rule |
+| --- | --- | --- |
+| String | `{"mode":"string","value":"cyclic"}` | Trim leading/trailing whitespace from both entries, then match exactly. Capitalization and internal whitespace matter. |
+| Integer | `{"mode":"integer","value":16}` | Accept signed whole-number digits, e.g. `16`, `+16`, `016`. Reject decimals (`16.0`), exponents, fractions, and expressions. |
+| Approximate | `{"mode":"approximate","min_value":3.14,"max_value":3.15}` | Accept a finite number in the inclusive range: `min_value <= answer <= max_value`. Decimal and scientific notation are allowed. |
+
+Both approximate bounds are mandatory JSON numbers; `min_value` cannot exceed
+`max_value`. Equal bounds are allowed. Integer `value` must be a JSON integer
+between -9007199254740991 and 9007199254740991, inclusive. String `value` must be
+single-line, nonempty after trimming, and at most 2,000 characters. Student input is limited to
+2,000 characters. All modes ignore leading/trailing input whitespace and reject
+blank submissions. Numeric input uses ASCII digits, optional `+`/`-`, and a
+period for the decimal separator; commas, units, arithmetic, hexadecimal,
+non-finite values, and numeric overflow/underflow are not accepted.
+
+Only the fields shown for the chosen mode are permitted inside `answer`.
+Do not include `responses` or `correctResponse` on a fill-in-the-blank question.
+There is one labeled answer field beneath the Markdown prompt; underscores in
+Markdown do not create additional inputs. Typed answers are plain text, not Markdown.
+
+Students use **Check Answer** or Enter to submit and can retry until correct.
+Correct answers unlock **Continue**. The accepted entry and instructor explanation
+remain visible in the completed card and in **Print Notes**. Answers are kept
+only in the current page's memory, not sent to the server; refreshing restarts
+the lesson. This remains practice, not server-verified assessment.
+
+The Cardinality sample includes one question for each mode. Existing
+instructor repositories are not changed by this template update: add question
+files and update their lesson order when you want to use the feature.
+
 ## Completion receipts
 
 After the final block, a student can download a signed JWT completion receipt to

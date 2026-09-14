@@ -7,6 +7,9 @@
   "order": [
     "01-finite-and-infinite.md",
     "finite.question.json",
+    "finite-count.question.json",
+    "finite-kind.question.json",
+    "finite-proportion.question.json",
     "02-countable-and-uncountable.md",
     "countability.question.json"
   ],
@@ -16,6 +19,7 @@
   ],
   "objectives": [
     "Write cardinality using standard notation",
+    "Compute a proportion from finite cardinalities",
     "Distinguish finite sets from infinite sets",
     "Explain countability through correspondence with the natural numbers",
     "Recognize representative countable and uncountable sets"

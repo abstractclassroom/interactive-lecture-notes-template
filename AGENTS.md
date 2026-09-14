@@ -27,7 +27,10 @@ stable question IDs within each lesson.
 - The metadata title is concise and student-facing
 - Objectives use observable verbs
 - Prerequisites name only knowledge actually needed by the lesson
-- Every question has a unique ID, Markdown prompt, response list, correct response, and feedback
+- Every question has a unique ID, Markdown prompt, and correct/incorrect feedback
+- Single-choice questions use `type: "single_choice"`, a response list, and a correct response ID
+- Fill-in-the-blank questions use `type: "fill_in_blank"` and one `answer` object: `string` (trimmed, case-sensitive `value`), `integer` (safe integer `value`), or `approximate` (required inclusive `min_value` and `max_value`)
+- Do not mix choice fields with typed answers; see README for exact fields, input limits, and sample questions
 - Mathematical notation is balanced and readable
 - Links use stable relative paths when they refer to repository content
 
